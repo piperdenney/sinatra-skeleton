@@ -1,0 +1,12 @@
+<h1><%= @entry.title %></h1>
+
+<span class="entry-date block font-3-4 c-lt-gray"><%= "Written on #{long_form_date(@entry.created_at)} - by #{@entry.user.user_name} - by " %><a href="/users/<%= @entry.user.id %>/entries"> <%= @entry.user.user_name %></a></span>
+
+<p><%= @entry.body %></p>
+<% unless session[:user_id] != @entry.user.id %>
+  <ul class="no-bullets no-padding mar-t-2">
+    <%= erb :'/entries/_edit', locals: {entry: @entry} %>
+
+    <%= erb :'/entries/_delete', locals: {entry: @entry} %>
+  </ul>
+<% end %>

@@ -1,0 +1,14 @@
+<% unless session[:user_id].nil? %>
+  <a id="add-entry" href="/entries/new" class="block button w-100 mar-t-2 mar-b-3 pad-2 round-1 text-c center">Write about Broccoli</a>
+<% end %>
+<div id="entry-form">
+
+</div>
+
+<main role="main">
+  <ul class="entries-list no-bullets no-padding">
+    <% @entries.each do |entry| %>
+      <%= erb :'/entries/_entry', locals: {entry: entry} %>
+    <% end %>
+  </ul>
+</main>

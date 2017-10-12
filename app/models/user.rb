@@ -5,7 +5,7 @@ require "bcrypt"
 class User < ActiveRecord::Base
   validates :email, presence: true, format: {with: URI::MailTo::EMAIL_REGEXP, message: 'only valid emails'}, uniqueness: true
   validates :user_name, presence: true
-  has_many :posts
+  has_many :entries
 
 
   def password

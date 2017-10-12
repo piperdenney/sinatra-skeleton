@@ -1,0 +1,20 @@
+<h1>Entries by <%= @user.user_name %></h1>
+
+<% @user.entries.each do |entry| %>
+<div class="entry- <%= entry.id %> ">
+  <span class="entry-title font-2 pad-b-1-4 c-white"><%= entry.title %></span>
+
+  <span class="entry-date block font-3-4 c-lt-gray"><%= "Written on #{long_form_date(entry.created_at)}" %></span>
+
+  <p><%= entry.body %></p>
+  <% unless session[:user_id] != entry.user.id %>
+  <ul class="no-bullets no-padding mar-t-2">
+    <%= erb :'/entries/_edit', locals: {entry: entry} %>
+
+    <%= erb :'/entries/_delete', locals: {entry: entry} %>
+  </ul>
+  <% end %>
+  <br>
+  <hr>
+</div>
+<% end %>
